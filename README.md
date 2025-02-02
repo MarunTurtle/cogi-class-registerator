@@ -1,0 +1,1 @@
+# cogi-class-registerator
