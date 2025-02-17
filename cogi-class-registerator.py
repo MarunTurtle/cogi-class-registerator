@@ -67,11 +67,11 @@ def attempt_previous_step_and_retry(by, value):
             print("Refreshed")
             # Perform the previous step
             try:
-                wait_and_click(By.CSS_SELECTOR, "a[data-seq='254']")
+                wait_and_click(By.CSS_SELECTOR, "a[data-seq='411']")
                 print("Clicked using data-seq.")
             except (NoSuchElementException, TimeoutException):
                 # If data-seq is not found or the element is not clickable, use text to find and click
-                course_text = "[초급 4차] 심리적 응급처치(이론 및 실습)"
+                course_text = "[중급 심화 1차] 마음프로그램"
                 wait_and_click_by_text(course_text)
                 print("data-seq not found. Clicked using link text.")
             # Navigate forward or reload to retry the step
@@ -129,12 +129,12 @@ try:
     driver.get('https://edu.nct.go.kr/member/eduLoginForm.do')
 
     # Wait until the target time
-    wait_until_target_time(target_time1)
+    # wait_until_target_time(target_time1)
 
     # Step 2: Log in using the provided credentials
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "inpId")))
     driver.find_element(By.ID, "inpId").send_keys("judy0902")
-    driver.find_element(By.ID, "inpPw").send_keys("dmswls092!")
+    driver.find_element(By.ID, "inpPw").send_keys("dmswls092.")
     wait_and_click(By.ID, "loginFormBtn")  # Ensures the login button is clickable before clicking
 
     # Step 3: Click the 확인 button (if necessary, add wait to ensure the button is visible)
@@ -144,19 +144,19 @@ try:
     wait_and_click(By.CSS_SELECTOR, "a[href='/eduAplc/regEduList.do']")
 
     # Wait until the target time
-    wait_until_target_time(target_time2)
+    # wait_until_target_time(target_time2)
 
     # Step 5: Attempt to click on the specific course using data-seq
     try:
-        wait_and_click(By.CSS_SELECTOR, "a[data-seq='254']")
+        wait_and_click(By.CSS_SELECTOR, "a[data-seq='411']")
         print("Clicked using data-seq.")
     except (NoSuchElementException, TimeoutException):
         # If data-seq is not found or the element is not clickable, use text to find and click
-        course_text = "[초급 5차] 심리적 응급처치(이론 및 실습)"
+        course_text = "[중급 심화 1차] 마음프로그램"
         wait_and_click_by_text(course_text)
         print("data-seq not found. Clicked using link text.")
 
-    # Step 6: Click the 초급과정 신청하기 button
+    # Step 6: Click the 신청하기 button
     attempt_previous_step_and_retry(By.ID, "AplcBtn")
 
     # Step 7: Check the checkbox for 개인정보 수집 이용에 동의함
